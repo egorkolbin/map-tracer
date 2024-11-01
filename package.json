@@ -1,18 +1,12 @@
 {
   "name": "map-tracer",
   "version": "1.0.0",
-  "description": "A simple and flexible library for drawing animated SVG lines based on an array of points.",
-  "main": "index.js",
+  "description": "A library for drawing animated SVG lines based on an array of points.",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "author": "egorkolbin",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^5.6.3"
-  },
-  "dependencies": {
-    "@types/node": "^22.8.6"
-  }
+  "keywords": ["svg", "animation", "lines", "map", "tracer"],
+  "author": "Ваше Имя",
+  "license": "MIT"
 }
