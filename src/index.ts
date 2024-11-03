@@ -20,23 +20,20 @@ export const mapTracer = ({
                               pathColor = '#000000',
                               parentNode,
                           }: DrawSvgLinesOptions) => {
-    // Проверка на наличие обязательного параметра dataArray
+
     if (!dataArray || dataArray.length === 0) {
         throw new Error('dataArray is required and should not be empty');
     }
 
-    // Вычисление ширины и высоты, если они не указаны
     const calculatedWidth =
         mapWidth || Math.max(...dataArray.map((point) => point.x));
     const calculatedHeight =
         mapHeight || Math.max(...dataArray.map((point) => point.y));
 
-    // Создание SVG элемента
     const svgNS = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(svgNS, 'svg');
     svg.setAttribute('viewBox', `0 0 ${calculatedWidth} ${calculatedHeight}`);
 
-    // Создание пути
     const pathData = dataArray
         .map((point, index) => {
             const command = index === 0 ? 'M' : 'L';
@@ -50,7 +47,6 @@ export const mapTracer = ({
     path.setAttribute('stroke', pathColor);
     path.setAttribute('stroke-width', '2');
 
-    // Определение анимации
     if (dashAnimate) {
         path.setAttribute('stroke-dasharray', '10, 10');
         path.setAttribute('stroke-dashoffset', '0');
@@ -72,12 +68,10 @@ export const mapTracer = ({
     `;
         document.head.appendChild(style);
     } else {
-        // Анимация рисования непрерывной линии
         const totalLength = path.getTotalLength().toString();
         path.setAttribute('stroke-dasharray', totalLength);
         path.setAttribute('stroke-dashoffset', totalLength);
 
-        // Добавляем анимацию с помощью ключевых кадров
         const style = document.createElement('style');
         style.textContent = `
       @keyframes draw {
@@ -97,7 +91,6 @@ export const mapTracer = ({
 
     svg.appendChild(path);
 
-    // Добавляем SVG в указанный родительский элемент или в body
     const parentElement = parentNode
         ? document.querySelector(parentNode)
         : document.body;
