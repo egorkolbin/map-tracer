@@ -6,11 +6,15 @@ declare module 'map-tracer' {
     }
 
     export function mapTracer(options: {
-        dataArray: NodePoint[];
-        mapWidth?: number;
-        mapHeight?: number;
-        dashAnimate?: boolean;
-        pathColor?: string;
-        parentNode?: string;
+        dataArray: NodePoint[]
+        mapWidth?: number
+        mapHeight?: number
+        dashAnimate?: boolean
+        pathColor?: string
+        strokeDasharray?: string
+        parentNode?: string
+        runAnimate?: boolean | string
+        runColor?: string
+        drawSpeed?: number
     }): void;
 }
