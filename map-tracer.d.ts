@@ -16,5 +16,6 @@ declare module 'map-tracer' {
         runAnimate?: boolean | string
         runColor?: string
         drawSpeed?: number
+        strokeWidth?: number
     }): void;
 }

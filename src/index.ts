@@ -10,6 +10,7 @@ interface DrawSvgLinesOptions {
     dashAnimate?: boolean
     pathColor?: string
     strokeDasharray?: string
+    strokeWidth?: number
     parentNode?: string
     runAnimate?: boolean | string
     runColor?: string
@@ -23,6 +24,7 @@ export const mapTracer = ({
                               dashAnimate = false,
                               pathColor = '#000000',
                               strokeDasharray = '10, 10',
+                              strokeWidth = 2,
                               parentNode,
                               runAnimate = false,
                               runColor = '#000000',
@@ -50,11 +52,11 @@ export const mapTracer = ({
             .join(' ')
 
         const path = document.createElementNS(svgNS, 'path')
-        path.setAttribute('id', 'path') // Added an id for referencing
+        path.setAttribute('id', 'path')
         path.setAttribute('d', pathData)
         path.setAttribute('fill', 'none')
-        path.setAttribute('stroke', pathColor!)
-        path.setAttribute('stroke-width', '2')
+        path.setAttribute('stroke', pathColor)
+        path.setAttribute('stroke-width', strokeWidth.toString())
 
         const parentElement = parentNode
             ? document.querySelector(parentNode)
@@ -72,7 +74,7 @@ export const mapTracer = ({
         const totalLength = path.getTotalLength().toString()
 
         if (dashAnimate) {
-            path.setAttribute('stroke-dasharray', strokeDasharray!)
+            path.setAttribute('stroke-dasharray', strokeDasharray)
 
             const style = document.createElement('style')
             style.textContent = `
@@ -117,9 +119,9 @@ export const mapTracer = ({
 
             if (typeof runAnimate === 'string') {
                 runner = document.createElementNS(svgNS, 'image')
-                runner.setAttribute('href', runAnimate)
-                runner.setAttribute('width', '20')
-                runner.setAttribute('height', '20')
+                runner.setAttribute('href', runAnimate) // Путь к пользовательской иконке
+                runner.setAttribute('width', '20') // Adjust size as needed
+                runner.setAttribute('height', '20') // Adjust size as needed
             } else {
                 const iconSvg = `
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +132,6 @@ export const mapTracer = ({
                 </g>
             </svg>
         `
-
                 runner = document.createElementNS(svgNS, 'foreignObject')
                 runner.setAttribute('width', '20')
                 runner.setAttribute('height', '20')

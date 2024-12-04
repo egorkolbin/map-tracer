@@ -36,6 +36,7 @@ mapTracer({
   runColor: '#ff0000', // Color for the running icon (optional)
   drawSpeed: 3, // Speed of drawing the line in seconds (optional)
   strokeDasharray: '10, 10', // Custom dash pattern for dashed lines (optional)
+  strokeWidth: 2, // Path stroke width (optional)
 });
 ```
 
@@ -86,6 +87,10 @@ The function `mapTracer` accepts an object with the following properties:
 
 - **drawSpeed** (number - optional):  
   The speed of the line drawing animation in seconds.  
+  **Default**: `2`
+
+- **strokeWidth** (number - optional):  
+  The width of the line.  
   **Default**: `2`
 
 # How It Works
